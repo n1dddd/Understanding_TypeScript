@@ -56,11 +56,7 @@ Down side f using a forced validation is that you can only
 */
 
 function add(n1: number, n2: number, showResult: boolean, phrase: string) {
-  //added a boolean type
-  // if (typeof n1 !== "number" && typeof n2 !== "number") {
-  //   throw new Error("Incorrect Input");
-  // }
-
+  //this syntax above is used by the TypeScript compiler
   const result = n1 + n2;
   if (showResult) {
     console.log(phrase + result);
@@ -69,9 +65,11 @@ function add(n1: number, n2: number, showResult: boolean, phrase: string) {
   }
 }
 
-const number1 = 5;
+const number1 = 5; //because TypeScript has type inference, no need to declare number1: number = 5
 const number2 = 2.8;
 const printResult = true;
 const resultPhrase = "Result is";
+
+//Core concept of TypeScript is to check types and yell at us if we are setting types incorrectly
 
 add(number1, number2, printResult, resultPhrase);
