@@ -38,14 +38,37 @@ const number2 = 2.8;
 
 const result = add(number1, number2);
 console.log(result);
+
+Down side f using a forced validation is that you can only
+  find the bug during runtime--typescript will throw a
+  compilation warning
+
+  JavaScript is dynamically typed, meaning you can set a
+  varialbe to a number initially, but later on change
+  that variable to a string and be perfectly fine --
+  why there is a typeof operator if code depends on a certain
+  type.
+
+  TypeScript is statically typed, variables are declared
+  hands on during development. This is to ensure consistency,
+  and making sure that you are clear in what type of type data
+  should be.
 */
-function add(n1, n2) {
-    if (typeof n1 !== "number" || typeof n2 !== "number") {
-        throw new Error("Incorrect Input");
+function add(n1, n2, showResult, phrase) {
+    //added a boolean type
+    // if (typeof n1 !== "number" && typeof n2 !== "number") {
+    //   throw new Error("Incorrect Input");
+    // }
+    var result = n1 + n2;
+    if (showResult) {
+        console.log(phrase + result);
     }
-    return n1 + n2;
+    else {
+        return result;
+    }
 }
-var number1 = "5"; //would not compile if 5 was a string
+var number1 = 5;
 var number2 = 2.8;
-var result = add(number1, number2);
-console.log(result);
+var printResult = true;
+var resultPhrase = "Result is";
+add(number1, number2, printResult, resultPhrase);
