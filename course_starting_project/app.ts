@@ -1,32 +1,15 @@
-function combine(
-  input1: number | string,
-  input2: number | string,
-  resultConversion: "as-number" | "as-text" //specific string comparison for type
-) {
-  let result;
-  if (
-    (typeof input1 === "number" && typeof input2 === "number") ||
-    resultConversion === "as-number"
-  ) {
-    result = +input1 + +input2;
-  } else {
-    result = input1.toString() + input2.toString();
-  }
-  // if (resultConversion === "as-number") {
-  //   return +result;
-  // } else {
-  //   return result.toString();
-  // }
-  return result;
+// function add(n1: number, n2: number): number {
+//   //explicity define the return type --although you should let TypeScript infer the type
+//   return n1 + n2;
+// }
+
+function add(n1: number, n2: number) {
+  return n1 + n2;
 }
 
-const combinedAges = combine(30, 26, "as-number");
+function printResult(num: number) {
+  //void return type as function does not return anything
+  console.log("Result" + num);
+}
 
-console.log(combinedAges);
-
-const combinedStringAges = combine("30", "26", "as-number");
-console.log(combinedStringAges);
-
-const combinedNames = combine("Max", "Anna", "as-text");
-
-console.log(combinedNames);
+console.log(printResult(add(5, 12))); //will yield undefined because return is void
