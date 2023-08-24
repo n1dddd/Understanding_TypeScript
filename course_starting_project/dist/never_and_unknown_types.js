@@ -9,4 +9,3 @@ function generateError(message, code) {
     throw { message: message, errorCode: code }; //function never returns anything -- basically crashes the script
 }
 generateError("An error occured!", 500);
-//# sourceMappingURL=never_and_unknown_types.js.map
