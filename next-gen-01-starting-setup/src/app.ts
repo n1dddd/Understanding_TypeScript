@@ -19,8 +19,8 @@ let result;
 
 // console.log(isOld);
 
-const add = (a: number, b: number = 1) => a + b; //if there is one expression, there is an implicit return, dont need curly braces
-console.log(add(2, 5));
+// const add = (a: number, b: number = 1) => a + b; //if there is one expression, there is an implicit return, dont need curly braces
+// console.log(add(2, 5));
 
 const printOutput = (output: string | number) => console.log(output);
 
@@ -30,7 +30,7 @@ if (button) {
   button.addEventListener("click", (event) => console.log(event)); //take advantage of short and concise arrow function syntax
 }
 
-printOutput(add(5));
+// printOutput(add(5));
 
 const hobbies = ["Sports", "cooking"];
 const activeHobbies = ["Hiking", ...hobbies];
@@ -45,3 +45,13 @@ const person = {
 const copiedPerson = {
   ...person, //actually copies the values instead of making a new reference to the pointer in memory
 };
+
+const add = (...numbers: number[]) => {
+  //can be used with tuples too, if you know how many arguments you want to accept
+  return numbers.reduce((currResult, curValue) => {
+    return currResult + curValue;
+  }, 0);
+}; //'rest' paramaters...numbers will merge all numbers into an array (all parameters will be accepted)
+
+const addedNumbers = add(5, 10, 2, 3.7);
+console.log(addedNumbers);
