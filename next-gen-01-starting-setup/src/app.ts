@@ -31,3 +31,17 @@ if (button) {
 }
 
 printOutput(add(5));
+
+const hobbies = ["Sports", "cooking"];
+const activeHobbies = ["Hiking", ...hobbies];
+
+activeHobbies.push(...hobbies); //tells JavaScript to pull out all the elements of the array, and add them as a list of individual values in the place that you use the operator
+
+const person = {
+  name: "Max",
+  age: 30,
+};
+
+const copiedPerson = {
+  ...person, //actually copies the values instead of making a new reference to the pointer in memory
+};
