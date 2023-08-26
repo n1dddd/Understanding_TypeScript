@@ -19,7 +19,7 @@ let result;
 
 // console.log(isOld);
 
-const add = (a: number, b: number) => a + b; //if there is one expression, there is an implicit return, dont need curly braces
+const add = (a: number, b: number = 1) => a + b; //if there is one expression, there is an implicit return, dont need curly braces
 console.log(add(2, 5));
 
 const printOutput = (output: string | number) => console.log(output);
@@ -30,4 +30,4 @@ if (button) {
   button.addEventListener("click", (event) => console.log(event)); //take advantage of short and concise arrow function syntax
 }
 
-printOutput(add(5, 2));
+printOutput(add(5));
