@@ -1,11 +1,11 @@
-const userName = "Max";
+// const userName = "Max";
 // userName = "Maximilian";
 
-let age = 30; //different from var, as where the variable is available in scope
+// let age = 30; //different from var, as where the variable is available in scope
 
-age = 29;
+// age = 29;
 
-let result;
+// let result;
 
 // function add(a: number, b: number) {
 //   let result;
@@ -38,7 +38,7 @@ const activeHobbies = ["Hiking", ...hobbies];
 activeHobbies.push(...hobbies); //tells JavaScript to pull out all the elements of the array, and add them as a list of individual values in the place that you use the operator
 
 const person = {
-  name: "Max",
+  firstName: "Max",
   age: 30,
 };
 
@@ -55,3 +55,10 @@ const add = (...numbers: number[]) => {
 
 const addedNumbers = add(5, 10, 2, 3.7);
 console.log(addedNumbers);
+
+const [hobby1, hobby2, ...remainingHobbies] = hobbies; //array destructering is pulling the elements out of the array
+//hobby1 and hobby2 are variables linked to the index of the original array values
+
+const { firstName: userName, age } = person; //pointing at the reference pointer
+//in object destructuring, the key values need to be referenced to the original object keys
+console.log(userName, age, person);
