@@ -1,9 +1,9 @@
-class Department {
+abstract class Department {
   //   private name: string; //this is a field of a class - defines the key in the object
   //   private employees: string[] = []; //accessible only to the method acting on the class -- cant access it by explicitly setting a value to the class
   protected employees: string[] = []; //accessible by inheritance
 
-  constructor(private readonly id: string, public name: string) {
+  constructor(protected readonly id: string, public name: string) {
     //reserved keyword - function tied to the class or object created by the class
     //'readonly' was added by TypeScript -- value initialized once and cannot be written to
     // this.name = name;
@@ -13,10 +13,10 @@ class Department {
     return { name: name };
   }
 
-  describe(this: Department) {
-    //when describe is executed, 'this' should always refer to an instance that is based on the department class
-    console.log(`Department ${this.id} : ${this.name}`);
-  }
+  abstract describe(this: Department): void;
+  //when describe is executed, 'this' should always refer to an instance that is based on the department class
+  // console.log(`Department ${this.id} : ${this.name}`);
+  //empty method and adding abstract forces classes inheriting the method to create a custom method
 
   addEmployee(employee: string) {
     this.employees.push(employee);
@@ -32,6 +32,10 @@ class ITDepartment extends Department {
   constructor(id: string, public admins: string[]) {
     super(id, "IT"); //has to be called before using 'this' to assign values to the class
     this.admins = admins;
+  }
+
+  describe() {
+    console.log("IT department id: " + this.id);
   }
 }
 
@@ -56,6 +60,10 @@ class AccountingDepartment extends Department {
   constructor(id: string, private reports: string[]) {
     super(id, "Accounting");
     this.lastReport = reports[0];
+  }
+
+  describe() {
+    console.log("Accounting department id: " + this.id);
   }
 
   addEmployee(name: string) {
@@ -106,5 +114,7 @@ accounting.addReport("Something went wrong");
 console.log(accounting.mostRecentReport);
 
 accounting.printReports();
+
+accounting.describe();
 
 // accountingCopy.describe(); //error here, because describe is being called on a copy of the it copy -- which has no name class, so this doesnt work
