@@ -1,14 +1,15 @@
 class Department {
-  name: string; //this is a field of a class - defines the key in the object
+  //   private name: string; //this is a field of a class - defines the key in the object
   private employees: string[] = []; //accessible only to the method acting on the class -- cant access it by explicitly setting a value to the class
-  constructor(n: string) {
+
+  constructor(private id: string, public name: string) {
     //reserved keyword - function tied to the class or object created by the class
-    this.name = n;
+    this.name = name;
   }
 
   describe(this: Department) {
     //when describe is executed, 'this' should always refer to an instance that is based on the department class
-    console.log("Department: " + this.name);
+    console.log(`Department ${this.id} : ${this.name}`);
   }
 
   addEmployee(employee: string) {
@@ -21,7 +22,7 @@ class Department {
   }
 }
 
-const accounting = new Department("Accounting");
+const accounting = new Department("d1", "Accounting");
 accounting.addEmployee("Max");
 accounting.addEmployee("Daniel");
 
