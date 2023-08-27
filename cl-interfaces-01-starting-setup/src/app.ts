@@ -6,7 +6,11 @@ class Department {
   constructor(private readonly id: string, public name: string) {
     //reserved keyword - function tied to the class or object created by the class
     //'readonly' was added by TypeScript -- value initialized once and cannot be written to
-    this.name = name;
+    // this.name = name;
+  }
+
+  static createEmployee(name: string) {
+    return { name: name };
   }
 
   describe(this: Department) {
@@ -71,7 +75,11 @@ class AccountingDepartment extends Department {
   }
 }
 
+const employee1 = Department.createEmployee("Max");
+console.log(employee1);
+
 const it = new ITDepartment("d1", ["Max"]);
+
 it.addEmployee("Max");
 it.addEmployee("Daniel");
 
