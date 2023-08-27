@@ -1,6 +1,7 @@
 class Department {
   //   private name: string; //this is a field of a class - defines the key in the object
-  private employees: string[] = []; //accessible only to the method acting on the class -- cant access it by explicitly setting a value to the class
+  //   private employees: string[] = []; //accessible only to the method acting on the class -- cant access it by explicitly setting a value to the class
+  protected employees: string[] = []; //accessible by inheritance
 
   constructor(private readonly id: string, public name: string) {
     //reserved keyword - function tied to the class or object created by the class
@@ -35,6 +36,13 @@ class AccountingDepartment extends Department {
     super(id, "Accounting");
   }
 
+  addEmployee(name: string) {
+    if (name === "Max") {
+      return;
+    }
+    this.employees.push(name); //private classes are only accesible in the class they are defined -- even if inherited
+  }
+
   addReport(text: string) {
     this.reports.push(text);
   }
@@ -59,6 +67,9 @@ it.printEmployeeInformation();
 console.log(it);
 
 const accounting = new AccountingDepartment("d2", []);
+accounting.addEmployee("Max");
+accounting.addEmployee("Manu");
+accounting.printEmployeeInformation();
 
 accounting.addReport("Something went wrong");
 
