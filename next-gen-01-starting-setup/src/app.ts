@@ -1,6 +1,24 @@
-interface Greetable {
+// type AddFn = (a: number, b: number) => number;
+
+interface AddFn {
+  (a: number, b: number): number;
+}
+
+let add: AddFn;
+
+add = (n1: number, n2: number) => {
+  return n1 + n2;
+};
+
+interface Named {
+  readonly name?: string;
+  output?: string; // '?'tell TypeScript that the property might exist in classes that implement this property
+}
+
+interface Greetable extends Named {
+  //Merging of interfaces, can inherit from many -- forces classes to have both greetable and a name, while named is still useable on its own
   //interfaces define the structure of an object
-  readonly name: string; //readonly lets the property be set once, and cannot be changed after the object has been initialized
+  readonly name?: string; //readonly lets the property be set once, and cannot be changed after the object has been initialized
   //properties and declaration of type of property
   age: number;
 
@@ -9,11 +27,13 @@ interface Greetable {
 
 class Person implements Greetable {
   //can inherit multiple interfaces
-  name: string;
+  name?: string; //optional property in class Person
   age = 30;
 
-  constructor(n: string) {
-    this.name = n;
+  constructor(n?: string) {
+    if (n) {
+      this.name = n;
+    }
   }
 
   greet(phrase: string) {
@@ -23,7 +43,7 @@ class Person implements Greetable {
 
 let user1: Greetable;
 
-user1 = new Person("Max");
+user1 = new Person();
 
 // user1 = {
 //   //satisfies the requirements of the interface
