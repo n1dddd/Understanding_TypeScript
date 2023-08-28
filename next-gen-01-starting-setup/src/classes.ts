@@ -46,15 +46,15 @@ const copiedPerson = {
   ...person, //actually copies the values instead of making a new reference to the pointer in memory
 };
 
-const add = (...numbers: number[]) => {
-  //can be used with tuples too, if you know how many arguments you want to accept
-  return numbers.reduce((currResult, curValue) => {
-    return currResult + curValue;
-  }, 0);
-}; //'rest' paramaters...numbers will merge all numbers into an array (all parameters will be accepted)
+// const add = (...numbers: number[]) => {
+//   //can be used with tuples too, if you know how many arguments you want to accept
+//   return numbers.reduce((currResult, curValue) => {
+//     return currResult + curValue;
+//   }, 0);
+// }; //'rest' paramaters...numbers will merge all numbers into an array (all parameters will be accepted)
 
-const addedNumbers = add(5, 10, 2, 3.7);
-console.log(addedNumbers);
+// const addedNumbers = add(5, 10, 2, 3.7);
+// console.log(addedNumbers);
 
 const [hobby1, hobby2, ...remainingHobbies] = hobbies; //array destructering is pulling the elements out of the array
 //hobby1 and hobby2 are variables linked to the index of the original array values
