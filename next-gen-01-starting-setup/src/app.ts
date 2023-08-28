@@ -1,64 +1,41 @@
-// const userName = "Max";
-// userName = "Maximilian";
+interface Greetable {
+  //interfaces define the structure of an object
+  readonly name: string; //readonly lets the property be set once, and cannot be changed after the object has been initialized
+  //properties and declaration of type of property
+  age: number;
 
-// let age = 30; //different from var, as where the variable is available in scope
-
-// age = 29;
-
-// let result;
-
-// function add(a: number, b: number) {
-//   let result;
-//   result = a + b;
-//   return result;
-// }
-
-// if (age > 20) {
-//   let isOld = true; //scoped within the curly braces
-// }
-
-// console.log(isOld);
-
-// const add = (a: number, b: number = 1) => a + b; //if there is one expression, there is an implicit return, dont need curly braces
-// console.log(add(2, 5));
-
-const printOutput = (output: string | number) => console.log(output);
-
-const button = document.querySelector("button");
-
-if (button) {
-  button.addEventListener("click", (event) => console.log(event)); //take advantage of short and concise arrow function syntax
+  greet(phrase: string): void;
 }
 
-// printOutput(add(5));
+class Person implements Greetable {
+  //can inherit multiple interfaces
+  name: string;
+  age = 30;
 
-const hobbies = ["Sports", "cooking"];
-const activeHobbies = ["Hiking", ...hobbies];
+  constructor(n: string) {
+    this.name = n;
+  }
 
-activeHobbies.push(...hobbies); //tells JavaScript to pull out all the elements of the array, and add them as a list of individual values in the place that you use the operator
+  greet(phrase: string) {
+    console.log(phrase + " " + this.name);
+  }
+}
 
-const person = {
-  firstName: "Max",
-  age: 30,
-};
+let user1: Greetable;
 
-const copiedPerson = {
-  ...person, //actually copies the values instead of making a new reference to the pointer in memory
-};
+user1 = new Person("Max");
 
-const add = (...numbers: number[]) => {
-  //can be used with tuples too, if you know how many arguments you want to accept
-  return numbers.reduce((currResult, curValue) => {
-    return currResult + curValue;
-  }, 0);
-}; //'rest' paramaters...numbers will merge all numbers into an array (all parameters will be accepted)
+// user1 = {
+//   //satisfies the requirements of the interface
+//   name: "Max",
+//   age: 29,
+//   greet(phrase: string) {
+//     console.log(phrase + this.name);
+//   },
+// };
+console.log(user1);
+user1.greet("Hi there I am ");
 
-const addedNumbers = add(5, 10, 2, 3.7);
-console.log(addedNumbers);
-
-const [hobby1, hobby2, ...remainingHobbies] = hobbies; //array destructering is pulling the elements out of the array
-//hobby1 and hobby2 are variables linked to the index of the original array values
-
-const { firstName: userName, age } = person; //pointing at the reference pointer
-//in object destructuring, the key values need to be referenced to the original object keys
-console.log(userName, age, person);
+//difference between an interface and custom type is interfaces are strictly to defining object types -- both are interchangeable but have their use cases
+//An interface can be implemented into a class. Interfaces can be used as a contract that a class can have implemented, and then it has to adhere to.
+//Interfaces enforce structure to classes -- forcing the 'implement' keyword on a class enforces you to have the declared structure -- dont care about user1 or what values it has, only care that it must have the greet method
