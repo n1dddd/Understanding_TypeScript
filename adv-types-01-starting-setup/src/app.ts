@@ -116,3 +116,14 @@ const userInputElement = document.getElementById("user-input");
 if (userInputElement) {
   (userInputElement as HTMLInputElement).value = "Hi there!"; //this version is an example where you are not sure if the value of the HTMLInputElement will be null (even exist);
 }
+
+interface ErrorContainer {
+  // { email: 'not a valid email', username: 'must start with a character' }
+  [prop: string]: string; //defining the object property types (objected constructed from ErrorContainer interface) which are strings
+  //saying you don't know the exact property name, I dont know the property count, but it must have a property name that must be interpreted as a string, and a value that must be interpretted as a string
+}
+//don't need to known property names/amount in advance to build a modular error message container
+const errorBag: ErrorContainer = {
+  email: "Not a valid email",
+  username: "Must start with a capital character!",
+};
