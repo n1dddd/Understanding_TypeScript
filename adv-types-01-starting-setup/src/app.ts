@@ -34,7 +34,17 @@ function add(a: Combinable, b: Combinable) {
 const result = add("Max", " Schwarz"); //'as string' if you dont provide the function overload;
 result.split(" ");
 
+const fetchedUserData = {
+  id: "u1",
+  name: "Max",
+  job: { title: "CEO", description: "My own company" },
+};
 
+console.log(fetchedUserData?.job?.title); //optional '?' chaining allows use to safely access nested properties -- does not throw a runtime error
+
+const userInput = ""; //empty string treated as a falsy value, so DEFAULT option is executed
+
+const storedDate = userInput ?? "DEFAULT"; //if userInput is null or undefined - then resort to DEFAULT
 
 type UnknownEmployee = Employee | Admin;
 
