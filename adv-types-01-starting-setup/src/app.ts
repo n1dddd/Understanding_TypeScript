@@ -101,3 +101,18 @@ function moveAnimal(animal: Animal) {
 }
 
 moveAnimal({ type: "bird", flyingSpeed: 10 });
+
+// const userInputElement = <
+//   HTMLInputElement //version 1 of type casting the generic HTML element
+// >document.getElementById("user-input")!;
+
+// const userInputElement = document.getElementById(
+//   "user-input"
+// )! as HTMLInputElement; //version 2 of type casting -- telling TypeScript that the 'user-input' id will yield a HTMLInputElement
+
+// userInputElement.value = "Hi there!";
+
+const userInputElement = document.getElementById("user-input");
+if (userInputElement) {
+  (userInputElement as HTMLInputElement).value = "Hi there!"; //this version is an example where you are not sure if the value of the HTMLInputElement will be null (even exist);
+}
