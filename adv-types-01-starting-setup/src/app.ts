@@ -21,6 +21,8 @@ type Numeric = number | boolean;
 
 type Universal = Combinable & Numeric; //type intersection on number, so type is number (type they have in common);
 
+function add(a: number, b: number): number; //function overloads -- allows TypeScript to infer the return type when its having a hard time
+function add(a: string, b: string): string;
 function add(a: Combinable, b: Combinable) {
   if (typeof a === "string" || typeof b === "string") {
     //this if statement is a type guard, allowing for flexible use of using union types -- needs to still explicitly define what you want to do with the parameters in regards to the return type
@@ -28,6 +30,12 @@ function add(a: Combinable, b: Combinable) {
   }
   return a + b;
 }
+
+const result = add("Max", " Schwarz"); //'as string' if you dont provide the function overload;
+result.split(" ");
+
+
+
 type UnknownEmployee = Employee | Admin;
 
 function printEmployeeInformation(emp: UnknownEmployee) {
