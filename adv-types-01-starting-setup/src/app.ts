@@ -75,3 +75,29 @@ function useVehicle(vehicle: Vehicle) {
 
 useVehicle(v1);
 useVehicle(v2);
+
+interface Bird {
+  type: "bird"; //not a value for the type property, but a literal type -- type assignment
+  flyingSpeed: number;
+}
+
+interface Horse {
+  type: "horse";
+  runningSpeed: Number;
+}
+
+type Animal = Bird | Horse; //discriminated union because of 1 common property in every object that makes up that union, while making up the object
+
+function moveAnimal(animal: Animal) {
+  let speed;
+  switch (animal.type) {
+    case "bird":
+      speed = animal.flyingSpeed;
+      break;
+    case "horse":
+      speed = animal.runningSpeed;
+  }
+  console.log("Moving with speed: " + speed);
+}
+
+moveAnimal({ type: "bird", flyingSpeed: 10 });
