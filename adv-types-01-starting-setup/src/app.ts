@@ -1,1 +1,77 @@
-// Code goes here!
+type Admin = {
+  name: string;
+  privilege: string[];
+};
+
+type Employee = {
+  name: string;
+  startDate: Date;
+};
+
+type ElevatedEmployee = Admin & Employee;
+
+const e1: ElevatedEmployee = {
+  name: "Max",
+  privilege: ["create-server"],
+  startDate: new Date(),
+};
+
+type Combinable = string | number;
+type Numeric = number | boolean;
+
+type Universal = Combinable & Numeric; //type intersection on number, so type is number (type they have in common);
+
+function add(a: Combinable, b: Combinable) {
+  if (typeof a === "string" || typeof b === "string") {
+    //this if statement is a type guard, allowing for flexible use of using union types -- needs to still explicitly define what you want to do with the parameters in regards to the return type
+    return a.toString() + b.toString();
+  }
+  return a + b;
+}
+type UnknownEmployee = Employee | Admin;
+
+function printEmployeeInformation(emp: UnknownEmployee) {
+  console.log("Name " + emp.name);
+  if ("privilege" in emp) {
+    //
+    console.log("Privileges " + emp.privilege);
+  }
+  if ("startDate" in emp) {
+    //JavaScript only knows is emp is an object when checking typeof, in this case look for property check in object
+    //
+    console.log("Start Date " + emp.startDate);
+  }
+}
+
+printEmployeeInformation(e1);
+
+class Car {
+  drive() {
+    console.log("Driving...");
+  }
+}
+
+class Truck {
+  drive() {
+    console.log("Driving a truck...");
+  }
+  loadCargo(amount: number) {
+    console.log("Loading cargo..." + amount);
+  }
+}
+
+type Vehicle = Car | Truck;
+
+const v1 = new Car();
+const v2 = new Truck();
+
+function useVehicle(vehicle: Vehicle) {
+  vehicle.drive();
+  if (vehicle instanceof Truck) {
+    //class constructor checking using instanceof -- JavaScript understands what class constructor was used to build the object
+    vehicle.loadCargo(1000);
+  }
+}
+
+useVehicle(v1);
+useVehicle(v2);
