@@ -10,8 +10,8 @@
 //     data.toExponential(2); //
 // })
 
-function merge<T extends Object, U>(objA: T, objB: U) {
-  return Object.assign(objA, objB);
+function merge<T extends Object, U extends Object>(objA: T, objB: U) {
+  return Object.assign(objA, objB); //setting constraints on our generic types
 }
 
 const mergedObj = merge(
@@ -19,6 +19,22 @@ const mergedObj = merge(
   { age: 30 }
 );
 console.log(mergedObj);
+
+interface Lengthy {
+  length: number;
+}
+
+function countAndDescribe<T extends Lengthy>(element: T): [T, string] {
+  let descriptionText = "Got no Value";
+  if (element.length === 1) {
+    descriptionText = "Got 1 element";
+  } else if (element.length > 1) {
+    descriptionText = "Got " + element.length + " elements";
+  }
+  return [element, descriptionText];
+}
+
+console.log(countAndDescribe("Hi There!"));
 
 //generics help with creating flexible and modular code
 //Want to merge two object
