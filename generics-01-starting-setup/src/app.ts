@@ -41,3 +41,12 @@ console.log(countAndDescribe("Hi There!"));
 //By using T & U, you assign a generic types, because you do not know what you will be receiving exactly
 //By calling Object.assign you are creating a new unknown object
 //You call merge by returning the intersection of T and U (both of their datas)
+
+function extractAndConvert<T extends object, U extends keyof T>(
+  obj: T,
+  key: U
+) {
+  return "Value " + obj[key]; //error because we dont know if the object we are getting will have the key
+}
+
+extractAndConvert({ name: "Max" }, "name");
